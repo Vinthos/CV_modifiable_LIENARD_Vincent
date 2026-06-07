@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Vincent LIENARD</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Connexions Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  
+  <!-- Importations des polices texte et des polices Pro pour le Nom -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Modèle Original (Manuscrit) */
+    .font-script-dancing {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    /* Option Oswald : Dense, moderne, typé Tech */
+    .font-name-oswald {
+      font-family: 'Oswald', sans-serif;
+    }
+
+    /* Option Cinzel : Classique, statutaire, haut de gamme */
+    .font-name-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Option Montserrat : Épuré, géométrique, design */
+    .font-name-montserrat {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Strict layout control for printing on a single A4 page */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0mm; /* Removes default browser headers, footers, and margins */
+      }
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        background-color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden; /* Prevents tiny overflows from creating a blank 2nd page */
+      }
+      .no-print {
+        display: none !important;
+      }
+      #cvContent {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        display: flex !important;
+        flex-direction: row !important; /* Force side-by-side layout on print */
+      }
+      /* Prevent elements inside columns from causing breaks */
+      .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      /* FORCE 40/60 RATIO ON PRINT */
+      #cvContent > div:first-child {
+        width: 40% !important;
+      }
+      #cvContent > div:last-child {
+        width: 60% !important;
+      }
+    }
+    
+    /* Simple outline to show editable elements when edit mode is on */
+    .edit-active [contenteditable="true"]:hover {
+      outline: 2px dashed #b8513b;
+      outline-offset: 2px;
+      cursor: text;
+    }
+    .edit-active [contenteditable="true"]:focus {
+      outline: 2px solid #b8513b;
+      outline-offset: 2px;
+    }
+
+    /* Style for the decorative slanted header divider in the sidebar */
+    .slanted-divider {
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    }
+  </style>
+</head>
+<body class="bg-slate-200 text-slate-800 min-h-screen">
+
+  <!-- Top Action Bar (Hidden when printing) -->
+  <div class="no-print sticky top-0 bg-white/95 backdrop-blur border-b border-slate-300 z-50 px-4 py-3 shadow-md">
+    <div class="max-w-5xl mx-auto flex flex-wrap gap-3 items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="inline-block w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+        <h1 class="text-sm font-semibold text-slate-700">CV - Vincent LIENARD - Format HTML</h1>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- EDIT BUTTON -->
+        <button id="toggleEdit" onclick="toggleEditMode()" class="px-4 py-1.5 text-white rounded-lg text-sm font-medium transition flex items-center gap-2 bg-slate-800 hover:bg-slate-700">
+          <i id="editIcon" class="fa-solid fa-pen"></i>
+          <span id="editText">Activer le mode édition</span>
+        </button>
+        <!-- SAVE BUTTON -->
+        <button onclick="saveHTMLChanges()" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-medium transition flex items-center gap-2 shadow-sm">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>Enregistrer les modifications (HTML)</span>
+        </button>
+        <!-- PRINT/PDF BUTTON -->
+        <button onclick="window.print()" class="px-4 py-1.5 bg-[#b8513b] hover:bg-[#a0402b] text-white rounded-lg text-sm font-medium transition flex items-center gap-2 shadow-sm shadow-red-900/20">
+          <i class="fa-solid fa-print"></i>
+          Exporter en PDF / Imprimer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main CV Container -->
+  <main id="cvContent" class="max-w-5xl mx-auto my-6 bg-white shadow-2xl rounded-xl overflow-hidden md:flex md:w-[210mm] md:h-[297mm] md:min-h-[297mm]">
+    
+    <!-- LEFT SIDEBAR (40% Width as configured) -->
+    <div class= "bg-[#34495e] text-slate-200 w-full md:w-[40%] flex flex-col justify-between">
+      <div>
+        
+        <!-- Terracotta Header -->
+        <div style="min-height: 240px !important;" class="bg-[#b8513b] text-white p-5 pt-8 pb-10 slanted-divider text-center relative">
+		<h2 contenteditable="false" style="padding-top: 15px !important;" class="text-[2.4rem] font-name-oswald font-bold italic leading-tight tracking-wide drop-shadow-sm">Vincent LIENARD</h2>
+          <p contenteditable="false" style="font-size: 14px !important;" class="font-bold tracking-[0.20em] uppercase text-red-100 mt-3 leading-relaxed">Référent<br> Technique & Fonctionnel</p>
+        </div>
+
+        <!-- Sidebar Content -->
+        <div class="px-5 py-2 space-y-4">
+          
+          <!-- Contact Info -->
+          <div class="avoid-break">
+            <h3 contenteditable="false" style="margin-top: 40px !important;" class="text-[14px] font-extrabold text-[#e28370] uppercase tracking-wider mb-2.5 flex items-center gap-2">
+              <span class="inline-block w-1.5 h-1.5 bg-[#e28370] rotate-45"></span> ME CONTACTER
+            </h3>
+            <ul class="space-y-2 text-[12px]">
+              <li class="flex items-start gap-2.5">
+                <span class="text-slate-300 mt-0.5"><i class="fa-solid fa-map-marker-alt"></i></span>
+                <span contenteditable="false" class="text-slate-200 leading-tight">285 Rue de la Jardelle<br>86130 Dissay</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-slate-300"><i class="fa-solid fa-envelope"></i></span>
+                <span contenteditable="false" class="text-slate-200 break-all">lienardvincent@outlook.fr</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-slate-300"><i class="fa-solid fa-phone"></i></span>
+                <span contenteditable="false" class="text-slate-200">06.82.29.68.18</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Languages -->
+          <div class="avoid-break">
+            <h3 contenteditable="false" class="text-[14px] font-extrabold text-[#e28370] uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span class="inline-block w-1.5 h-1.5 bg-[#e28370] rotate-45"></span> LANGUES PARLÉES
+            </h3>
+            <div class="flex gap-4 items-center pl-2">
+              <div class="flex items-center gap-2">
+                <img src="https://flagcdn.com/w40/fr.png" srcset="https://flagcdn.com/w80/fr.png 2x" class="w-5 h-5 rounded-full object-cover border border-slate-700" alt="France">
+                <span contenteditable="false" class="text-[12px] text-slate-300 font-medium">Français</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <img src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w80/gb.png 2x" class="w-5 h-5 rounded-full object-cover border border-slate-700" alt="Royaume-Uni">
+                <span contenteditable="false" class="text-[12px] text-slate-300 font-medium">Anglais</span>
+              </div>
+            </div>
+          </div>
+
+		  <!-- Liste Technique Épurée -->
+          <div class="avoid-break">
+            <h3 contenteditable="false" class="text-[14px] font-extrabold text-[#e28370] uppercase tracking-wider mb-2.5 flex items-center gap-2">
+              <span class="inline-block w-1.5 h-1.5 bg-[#e28370] rotate-45"></span> ENVIRONNEMENT TECHNIQUE
+            </h3>
+            <ul class="space-y-1.5 text-[12px] text-slate-200 pl-1">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-server text-[#e28370] text-[10px] w-3.5 text-center"></i>
+                <span>Windows Server & Active Directory</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-brands fa-linux text-[#e28370] text-[11px] w-3.5 text-center"></i>
+                <span>Linux Debian / Ubuntu</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-network-wired text-[#e28370] text-[10px] w-3.5 text-center"></i>
+                <span>Réseaux (LAN/WAN) & Sécurité</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-file-invoice text-[#e28370] text-[10px] w-3.5 text-center"></i>
+                <span>Solutions Sage 100 & Batigest</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-code text-[#e28370] text-[10px] w-3.5 text-center"></i>
+                <span>Python, Scripting & Flux XML</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-brain text-[#e28370] text-[10px] w-3.5 text-center"></i>
+                <span>Architectures RAG & LLM</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- About me -->
+          <div class="avoid-break">
+            <h3 contenteditable="false" class="text-[14px] font-extrabold text-[#e28370] uppercase tracking-wider mb-2.5 flex items-center gap-2">
+              <span class="inline-block w-1.5 h-1.5 bg-[#e28370] rotate-45"></span> À PROPOS
+            </h3>
+            <ul class="space-y-1.5 text-[10.5px] text-slate-200">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-map-marker-alt text-slate-400 mt-0.5"></i>
+                <div class="leading-tight">
+                  <p class="text-slate-400 text-[12px]">Lieu de naissance</p>
+                  <p class="text-[12px]" contenteditable="false">Ville de Laon (02000)</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-calendar-alt text-slate-400 mt-0.5"></i>
+                <div class="leading-tight">
+                  <p class="text-slate-400 text-[12px]">Date de naissance</p>
+                  <p class="text-[12px]" contenteditable="false">Né le 5 mai 1989</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Divers -->
+          <div class="avoid-break">
+            <h3 contenteditable="false" class="text-[14px] font-extrabold text-[#e28370] uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span class="inline-block w-1.5 h-1.5 bg-[#e28370] rotate-45"></span> DIVERS
+            </h3>
+            <ul class="space-y-1.5 text-[12px] text-slate-200">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-slate-400 text-xs w-4"></i>
+                <span contenteditable="false">Permis B + Véhicule</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-baby text-slate-400 text-xs w-4"></i>
+                <span contenteditable="false">Deux enfants (collège/lycée)</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer area in sidebar -->
+      <div class="p-4 pt-1 border-t border-[#2c3e50] text-center md:text-left avoid-break">
+        <p class="text-[8px] text-slate-400">CV LIENARD Vincent - Version 2026.</p>
+      </div>
+    </div>
+
+
+    <!-- RIGHT CONTENT AREA (60% Width as configured) -->
+    <div class="w-full md:w-[60%] p-5 md:p-6 flex flex-col justify-between bg-white overflow-hidden">
+      <div class="space-y-4">
+        
+        <!-- Expériences professionnelles (NOW FIRST!) -->
+        <div class="avoid-break">
+          <h3 contenteditable="false" class="text-xs font-black text-[#b8513b] uppercase tracking-wider pb-1 mb-2 border-b-2 border-slate-100 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-[#b8513b] text-white flex items-center justify-center text-[9px]"><i class="fa-solid fa-briefcase"></i></span> Expériences professionnelles
+          </h3>
+          
+          <div class="relative border-l-2 border-slate-200 pl-4 ml-2.5 space-y-2">
+            
+            <!-- INSECO -->
+            <div class="relative text-[10px] bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+              <div class="absolute -left-[22px] top-[9px] w-2 h-2 rounded-full bg-[#b8513b]"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">RÉFÉRENT TECHNIQUE &amp; FONCTIONNEL</span>
+                <span contenteditable="false" class="text-[#b8513b] font-black text-[8.5px]">Depuis 2026</span>
+              </div>
+              <p contenteditable="false" class="text-slate-600 font-medium">INSECO (86) — Facturation Électronique &amp; Flux SI</p>
+            </div>
+
+            <!-- VIVATICKET -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">TECHNICIEN SUPPORT INFORMATIQUE</span>
+                <div class="flex items-center gap-2">
+                  <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2019-2024</span>
+                  <span contenteditable="false" class="text-slate-500 italic text-[8.5px] whitespace-nowrap">5 ans</span>
+                </div>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[8.5px]">Vivaticket France (86)</p>
+            </div>
+
+            <!-- SERCA -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">TECHNICIEN SUPPORT INFORMATIQUE</span>
+                <div class="flex items-center gap-2">
+                  <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2019</span>
+                  <span contenteditable="false" class="text-slate-500 italic text-[8.5px] whitespace-nowrap">6 mois</span>
+                </div>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[8.5px]">Serca à Saint-Benoît (86)</p>
+            </div>
+
+            <!-- PRELUDE -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">TECHNICIEN TÉLÉCOM ET RÉSEAUX</span>
+                <div class="flex items-center gap-2">
+                  <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2018</span>
+                  <span contenteditable="false" class="text-slate-500 italic text-[8.5px] whitespace-nowrap">1 an</span>
+                </div>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[8.5px]">Prélude Poitiers (Alternance) (86)</p>
+            </div>
+
+            <!-- CABLYSIS -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">TECHNICIEN INFORMATIQUE</span>
+                <div class="flex items-center gap-2">
+                  <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2016</span>
+                  <span contenteditable="false" class="text-slate-500 italic text-[8.5px] whitespace-nowrap">1 mois ½</span>
+                </div>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[8.5px]">Cablysis Sissonne, Service Informatique (02)</p>
+            </div>
+
+            <!-- E-PROGEST -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">TECHNICIEN DE MAINTENANCE INFORMATIQUE</span>
+                <div class="flex items-center gap-2">
+                  <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2015-2016</span>
+                  <span contenteditable="false" class="text-slate-500 italic text-[8.5px] whitespace-nowrap">3 mois</span>
+                </div>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[8.5px]">E-Progest informatique (02)</p>
+            </div>
+
+            <!-- COFFRALARM 2013 -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-bold text-slate-800">ÉLECTRICIEN ALARMISTE</span>
+                <div class="flex items-center gap-2">
+                  <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2013</span>
+                  <span contenteditable="false" class="text-slate-500 italic text-[8.5px] whitespace-nowrap">4 mois</span>
+                </div>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[8.5px]">SARL Coffr'Alarm (51)</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Cursus scolaire & Diplômes (NOW SECOND) -->
+        <div class="avoid-break">
+          <h3 contenteditable="false" class="text-xs font-black text-[#b8513b] uppercase tracking-wider pb-1 mb-2 border-b-2 border-slate-100 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-[#b8513b] text-white flex items-center justify-center text-[9px]"><i class="fa-solid fa-graduation-cap"></i></span> Cursus scolaire &amp; Diplômes
+          </h3>
+          
+          <div class="relative border-l-2 border-slate-200 pl-4 ml-2.5 space-y-2">
+            <!-- LP ARM -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-[#b8513b]"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-extrabold text-slate-800 uppercase text-[9.5px]">LICENCE PRO ARM Administration des Réseaux Multimédia</span>
+                <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2018</span>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[9px]">IUT Poitiers, site de Châtellerault (86)</p>
+            </div>
+            
+            <!-- BTS SN -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-[#b8513b]"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-extrabold text-slate-800 uppercase text-[9.5px]">BTS Systèmes Numériques (Option Informatique et Réseaux)</span>
+                <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2017</span>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[9px]">Lycée Condorcet à Saint-Quentin (02)</p>
+            </div>
+
+            <!-- BAC Pro -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-extrabold text-slate-800 uppercase text-[9.5px]">BAC Pro Systèmes Électroniques Numériques (Mention TB)</span>
+                <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2015</span>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[9px]">GRETA de Laon (02)</p>
+            </div>
+
+            <!-- Titre Pro -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-extrabold text-slate-800 uppercase text-[9.5px]">Titre Pro E.C.M. Employé Commercial en Magasin</span>
+                <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2013</span>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[9px]">AFPA de Laon (02)</p>
+            </div>
+
+            <!-- Mecanique -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-extrabold text-slate-800 uppercase text-[9.5px]">Formation Mécanique Petits Engins</span>
+                <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2010</span>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[9px]">AFPA de Laon (02)</p>
+            </div>
+
+            <!-- CAP BEP -->
+            <div class="relative text-[10px]">
+              <div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-slate-300"></div>
+              <div class="flex items-baseline justify-between">
+                <span contenteditable="false" class="font-extrabold text-slate-800 uppercase text-[9.5px]">CAP / BEP Electrotechnique</span>
+                <span contenteditable="false" class="text-slate-400 text-[9px] font-bold">2006-2008</span>
+              </div>
+              <p contenteditable="false" class="text-slate-500 text-[9px]">Lycée Professionnel Croix Cordier - Tinqueux (51)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compétences professionnelles -->
+        <div class="avoid-break">
+          <h3 contenteditable="false" class="text-xs font-black text-[#b8513b] uppercase tracking-wider pb-1 mb-1.5 border-b-2 border-slate-100 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-[#b8513b] text-white flex items-center justify-center text-[9px]"><i class="fa-solid fa-cogs"></i></span> Compétences professionnelles
+          </h3>
+          
+		  <div class="pl-2">
+            <h4 contenteditable="false" class="text-[10px] font-extrabold text-slate-800 uppercase mb-2">Expertise Métier & Réalisation</h4>
+            
+            <!-- Sous-catégorie 1: Gestion & Organisation -->
+            <p class="text-[10px] font-bold text-[#b8513b] uppercase tracking-wide mb-1">Piloter & Accompagner</p>
+            <ul class="grid grid-cols-2 gap-x-4 gap-y-1 list-disc pl-4 text-[10px] text-slate-600 leading-snug mb-3">
+              <li contenteditable="false" class="col-span-2 font-semibold text-slate-800">Écosystème Sage : Pilotage, recette et support fonctionnel des solutions Sage 100 et Batigest connectées au Portail collaboratif / Plateforme Agréée (PA).</li>
+              <li contenteditable="false">Facture Électronique : Intégration logicielle, cas d'usage, flux SI et conformité légale</li>
+			  <li contenteditable="false">Formation & Pédagogie : Accompagnement des équipes internes et des utilisateurs</li>
+              <li contenteditable="false">Planification, coordination et suivi des techniciens itinérants</li>
+              <li contenteditable="false">Supervision de projets (déploiement, mise à jour, réparation)</li>
+              <li contenteditable="false">Rédaction de procédures, guides utilisateurs et documentations</li>
+              <li contenteditable="false">Gestion, suivi et optimisation des stocks de matériel</li>
+            </ul>
+
+            <!-- Sous-catégorie 2: Technique & Infrastructure -->
+            <p class="text-[10px] font-bold text-[#b8513b] uppercase tracking-wide mb-1">Infrastructures & Systèmes</p>
+            <ul class="grid grid-cols-2 gap-x-4 gap-y-1 list-disc pl-4 text-[10px] text-slate-600 leading-snug">
+              <li contenteditable="false" class="col-span-2 font-semibold text-slate-800">IA Générative & RAG : Conception de chatbot métier, structuration de bases de connaissances (Markdown) et intégration de LLM</li>
+              <li contenteditable="false">Installation et intégration d'équipements numériques (physiques et virtuels)</li>
+              <li contenteditable="false">Configuration d'équipements réseaux (routeurs, switches, LAN/WAN)</li>
+              <li contenteditable="false">Administration et réglage de serveurs téléphoniques (Alcatel-Lucent OXO)</li>
+              <li contenteditable="false">Diagnostic approfondi de pannes matérielles/logicielles et dépannage</li>
+              <li contenteditable="false">Maintenance préventive, corrective et contrôle des parcs</li>
+              <li contenteditable="false">Langages de programmation et scripts (C, C++, Python...)</li>
+            </ul>
+          </div>
+
+
+		<!-- Interêts & Loisirs -->
+        <div class="avoid-break mt-4">
+          <h3 contenteditable="false" class="text-xs font-black text-[#b8513b] uppercase tracking-wider pb-1 mb-2.5 border-b-2 border-slate-100 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-[#b8513b] text-white flex items-center justify-center text-[9px]"><i class="fa-solid fa-gem"></i></span> Interêts &amp; Loisirs
+          </h3>
+          
+          <!-- Round icons in rows matching Photoshop footer -->
+          <div class="flex justify-around items-center max-w-md mx-auto text-center">
+            
+            <!-- RIGUEUR & TECH -->
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full border-2 border-[#b8513b] text-[#b8513b] flex items-center justify-center text-xs">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <span contenteditable="false" class="text-[8.5px] font-semibold text-slate-600">Tech &amp; IA</span>
+            </div>
+
+            <!-- GEEK / POP CULTURE -->
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full border-2 border-[#b8513b] text-[#b8513b] flex items-center justify-center text-xs">
+                <i class="fa-solid fa-gamepad"></i>
+              </div>
+              <span contenteditable="false" class="text-[8.5px] font-semibold text-slate-600">Jeux Vidéo</span>
+            </div>
+
+            <!-- IMAGINAIRE & STRATÉGIE -->
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full border-2 border-[#b8513b] text-[#b8513b] flex items-center justify-center text-xs">
+                <i class="fa-solid fa-dice-d20"></i>
+              </div>
+              <span contenteditable="false" class="text-[8.5px] font-semibold text-slate-600">Jeux de rôle</span>
+            </div>
+
+            <!-- ÉPICURIEN & CONVIVIALITÉ -->
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full border-2 border-[#b8513b] text-[#b8513b] flex items-center justify-center text-xs">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+              <span contenteditable="false" class="text-[8.5px] font-semibold text-slate-600">Épicurisme</span>
+            </div>
+
+            <!-- CULTURE JAPONAISE & MUSIQUE -->
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full border-2 border-[#b8513b] text-[#b8513b] flex items-center justify-center text-xs">
+                <i class="fa-solid fa-torii-gate"></i>
+              </div>
+              <span contenteditable="false" class="text-[8.5px] font-semibold text-slate-600">Culture Jap'</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let isEditMode = false;
+
+    function toggleEditMode() {
+      const mainContainer = document.getElementById('cvContent');
+      const toggleBtn = document.getElementById('toggleEdit');
+      const editText = document.getElementById('editText');
+      const editIcon = document.getElementById('editIcon');
+      
+      const editableElements = mainContainer.querySelectorAll('[contenteditable]');
+
+      if (!isEditMode) {
+        editableElements.forEach(el => {
+          el.setAttribute('contenteditable', 'true');
+        });
+        document.body.classList.add('edit-active');
+        toggleBtn.classList.remove('bg-slate-800', 'hover:bg-slate-700');
+        toggleBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-500');
+        editText.innerText = 'Désactiver l\'édition';
+        editIcon.className = 'fa-solid fa-check';
+        isEditMode = true;
+      } else {
+        editableElements.forEach(el => {
+          el.setAttribute('contenteditable', 'false');
+        });
+        document.body.classList.remove('edit-active');
+        toggleBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-500');
+        toggleBtn.classList.add('bg-slate-800', 'hover:bg-slate-700');
+        editText.innerText = 'Activer le mode édition';
+        editIcon.className = 'fa-solid fa-pen';
+        isEditMode = false;
+      }
+    }
+
+    function saveHTMLChanges() {
+      if (isEditMode) {
+        toggleEditMode();
+      }
+
+      const mainContainer = document.getElementById('cvContent');
+      const editableElements = mainContainer.querySelectorAll('[contenteditable]');
+      editableElements.forEach(el => {
+        el.setAttribute('contenteditable', 'false');
+      });
+
+      const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'cv_vincent_lienard.html';
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const mainContainer = document.getElementById('cvContent');
+      const editableElements = mainContainer.querySelectorAll('[contenteditable]');
+      editableElements.forEach(el => {
+        el.setAttribute('contenteditable', 'false');
+      });
+    });
+  </script>
+
+</body></html>
